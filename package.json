@@ -1,0 +1,25 @@
+{
+  "name": "testblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://sfltmya:bf4239115828@github.com/sfltmya/TestBlog.git.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sfltmya/TestBlog.git/issues"
+  },
+  "homepage": "https://github.com/sfltmya/TestBlog.git#readme",
+  "dependencies": {
+    "koa": "^2.12.0",
+    "koa-router": "^8.0.8",
+    "koa-static": "^5.0.0"
+  }
+}
