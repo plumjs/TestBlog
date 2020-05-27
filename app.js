@@ -4,6 +4,6 @@ const static = require('koa-static');
 const app = new Koa()
 app.use(static('./'))
 
-const port = 3000
-app.listen(port)
-console.log(`start listening at ${port}...`)
+app.listen(process.env.PORT)
+console.log(`start listening at ${process.env.PORT}...`)
+

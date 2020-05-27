@@ -2,6 +2,11 @@
 
     Some testing about CSS layout
 
+### Prerequisite
+
+- node > v12.0.0
+- npm > 6.9.0
+
 #### Steps
 
 - npm install

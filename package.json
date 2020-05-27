@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "dev": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "dependencies": {
     "koa": "^2.12.0",
     "koa-router": "^8.0.8",
-    "koa-static": "^5.0.0"
+    "koa-static": "^5.0.0",
+    "nodemon": "^2.0.4"
   }
 }
