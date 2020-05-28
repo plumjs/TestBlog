@@ -5,7 +5,7 @@
 ### Prerequisite
 
 - node > v12.0.0
-- npm > 6.9.0
+- npm > v6.9.0
 
 #### Steps
 
@@ -18,7 +18,8 @@ npm i
 - start listening
 
 ```
-node app.js
+# or yarn dev
+npm run dev
 ```
 
 - view panel
