@@ -1,78 +1,80 @@
 const menus = [{
-		id: "0",
-		name: '首页',
-		icon: 'images/icons/house.svg',
+	id: "0",
+	name: '首页',
+	icon: 'images/icons/house.svg',
+	level: 2,
+	parent: null,
+	content: '0',
+},
+{
+	id: "A",
+	name: '笔记',
+	icon: 'images/icons/chevron-compact-right.svg',
+	spreadIcon: 'images/icons/chevron-compact-down.svg',
+	level: 1,
+	parent: null,
+	children: [{
+		id: "A1",
+		name: '笔记-CSS笔记',
+		icon: 'images/icons/chevron-compact-right.svg',
 		level: 2,
-		parent: null,
-		content: '0',
+		parent: 'A',
+		content: '1',
 	},
 	{
-		id: "A",
-		name: '笔记',
-		icon: 'images/icons/circle-fill.svg',
-		level: 1,
-		parent: null,
-		children: [{
-				id: "A1",
-				name: '笔记-CSS笔记',
-				icon: 'images/icons/circle.svg',
-				level: 2,
-				parent: 'A',
-				content: '1',
-			},
-			{
-				id: "A2",
-				name: '笔记-HTML笔记',
-				icon: 'images/icons/circle.svg',
-				level: 2,
-				parent: 'A',
-				content: '2',
-			},
-		]
+		id: "A2",
+		name: '笔记-HTML笔记',
+		icon: 'images/icons/chevron-compact-right.svg',
+		level: 2,
+		parent: 'A',
+		content: '2',
+	},
+	]
+},
+{
+	id: "B",
+	name: '收藏',
+	icon: 'images/icons/chevron-compact-right.svg',
+	spreadIcon: 'images/icons/chevron-compact-down.svg',
+	level: 1,
+	parent: null,
+	children: [{
+		id: "B1",
+		name: '收藏-文档规范',
+		icon: 'images/icons/chevron-compact-right.svg',
+		level: 2,
+		parent: 'B',
+		content: '3',
 	},
 	{
-		id: "B",
-		name: '收藏',
-		icon: 'images/icons/circle-fill.svg',
-		level: 1,
-		parent: null,
-		children: [{
-				id: "B1",
-				name: '收藏-文档规范',
-				icon: 'images/icons/circle.svg',
-				level: 2,
-				parent: 'B',
-				content: '3',
-			},
-			{
-				id: "B2",
-				name: '收藏-git注释',
-				icon: 'images/icons/circle.svg',
-				level: 2,
-				parent: 'B',
-				content: '4',
-			},
-		]
+		id: "B2",
+		name: '收藏-git注释',
+		icon: 'images/icons/chevron-compact-right.svg',
+		level: 2,
+		parent: 'B',
+		content: '4',
 	},
+	]
+},
 
 ]
 
 const navs = [{
-		id: "N1",
-		name: '首页',
-		icon: 'images/icons/house.svg',
-		level: 2,
-		parent: null,
-		content: '0',
-	},
-	{
-		id: "N2",
-		name: '归档',
-		icon: 'images/icons/collection.svg',
-		level: 2,
-		parent: null,
-		content: '0',
-	}
+	id: "N1",
+	name: '首页',
+	icon: 'images/icons/house.svg',
+	level: 2,
+	parent: null,
+	content: '0',
+},
+{
+	id: "N2",
+	name: '归档',
+	icon: 'images/icons/collection.svg',
+	level: 2,
+	parent: null,
+	content: '0',
+}
 ]
 /**
  * 根据menuId 查询id
@@ -93,10 +95,20 @@ function pick(menuId, menus) {
  * @param {Object} elem 
  */
 function menuScroll(elem) {
-	const ul = elem.childNodes.forEach(x => {
-		if (x.nodeName === 'UL' && (!x.style.display || x.style.display === 'none')) return x.style.display = 'list-item'
-		if (x.nodeName === 'UL' && x.style.display === 'list-item') return x.style.display = 'none'
-	})
+	const chirldrens = []
+	elem.childNodes.forEach(x => chirldrens.push(x))
+	const [iNode, , ulNode] = chirldrens.map(x => { return x })
+	if (!ulNode.style.display || ulNode.style.display === 'none') {
+		ulNode.style.display = 'list-item'
+		iNode.style.backgroundImage = 'url( images/icons/chevron-compact-down.svg )'
+		return
+	}
+	if (ulNode.style.display === 'list-item') {
+		ulNode.style.display = 'none'
+		iNode.style.backgroundImage = 'url( images/icons/chevron-compact-right.svg )'
+		return
+
+	}
 }
 /**
  * 载入二级菜单链接的内容
