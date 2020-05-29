@@ -1,4 +1,34 @@
-#### to do list
+### Introduction
+
+    Some testing about CSS layout
+
+### Prerequisite
+
+- node > v12.0.0
+- npm > v6.9.0
+
+### Steps
+
+- npm install
+
+```
+    npm i
+```
+
+- start listening
+
+```
+    # or yarn dev
+    npm run dev
+```
+
+- view panel
+
+```
+    curl http://127.0.0.1:3000/index.html
+```
+
+### Todo List
 
 - [x] 左侧菜单实配置化，点击父菜单栏实现收缩，点击子菜单栏实现对应文章获取
 
