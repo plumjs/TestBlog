@@ -110,13 +110,6 @@ function menuScroll(elem) {
 
 	}
 }
-/**
- * 载入二级菜单链接的内容
- * @param {Object} menu
- */
-function loadMenuContent(elem) {
-
-}
 
 /**
  * 创建一个一级菜单以及其子级菜单

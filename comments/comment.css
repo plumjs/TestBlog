@@ -1,0 +1,38 @@
+.articleCommentContent {
+  border-top: 1px solid #e5e9ef;
+  /* border: 1px solid grey; */
+  background-color: #fff;
+  /* border-radius: 5px; */
+  padding: 10px;
+  /* box-shadow: 2px 2px 5px #888888; */
+  margin-left: 20px;
+}
+
+.articleCommentContent li {
+  line-height: 1.7em;
+}
+
+.articleCommentInput {
+  border-top: 1px solid #e5e9ef;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.articleCommentInput lable {
+  float: left;
+  /* display: inline-block; */
+  text-align: center;
+}
+
+
+.articleCommentInput textarea {
+  height: 100px;
+  width: 90%;
+}
+
+
+
+.articleCommentInput button {
+  float: right;
+  margin-right: 20px;
+}

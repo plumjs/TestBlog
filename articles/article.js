@@ -39,6 +39,18 @@ function markedParse(response) {
 	return [marked(response, { renderer }), nav];
 }
 
+function buildContent(innerHTML, id) {
+	const elem = document.createElement('div')
+	elem.setAttribute('id', `article_${id}`)
+	elem.classList.add('article')
+	elem.innerHTML = innerHTML
+	const content = document.getElementById('content-body')
+	while (content.lastElementChild) {
+		content.removeChild(content.lastElementChild);
+	}
+	content.appendChild(elem)
+}
+
 function buildContentExtra(navs, nodeId) {
 	const elem = document.getElementById(nodeId)
 	while (elem.lastElementChild) {
@@ -68,56 +80,55 @@ function buildExtraElem(nav) {
 }
 
 async function fetch(id) {
+	// fetch data
 	const name = articles.filter(x => x.id === id).pop().name
 	const response = await getAsync(`${BASE_URL}/${name}`)
-	const elem = document.createElement('div')
-	elem.classList.add('article')
 	const [innerHTML, navs] = markedParse(response)
-	elem.innerHTML = innerHTML
-	const pageCenter = document.getElementById('content-body')
-	while (pageCenter.lastElementChild) {
-		pageCenter.removeChild(pageCenter.lastElementChild);
-	}
-	document.getElementById('content-body').appendChild(elem)
 
-	// add content-body-extra
+	// build content
+	buildContent(innerHTML, id)
+
+	// load comments
+	buildComment(id)
+
+	// build content nav
 	buildContentExtra(buildTree(navs), 'content-extra-ul')
 
 }
 
-async function createArticle(id) {
-	const name = articles.filter(x => x.id === id).pop().name
-	const content = await getAsync(`${BASE_URL}/${name}`)
-	const elem = document.createElement('div')
-	elem.classList.add('article')
-	elem.innerHTML = marked(content);
-	return elem;
-}
+// async function createArticle(id) {
+// 	const name = articles.filter(x => x.id === id).pop().name
+// 	const content = await getAsync(`${BASE_URL}/${name}`)
+// 	const elem = document.createElement('div')
+// 	elem.classList.add('article')
+// 	elem.innerHTML = marked(content);
+// 	return elem;
+// }
 
-async function createNavAiticle(id) {
-	const article = articles.filter(x => x.id === id).pop()
-	const content = await getAsync(`${BASE_URL}/${article.name}`)
-	const elem = document.createElement('div')
-	elem.classList.add('articleNav')
-	elem.innerHTML = marked(content);
-	return elem;
-}
+// async function createNavAiticle(id) {
+// 	const article = articles.filter(x => x.id === id).pop()
+// 	const content = await getAsync(`${BASE_URL}/${article.name}`)
+// 	const elem = document.createElement('div')
+// 	elem.classList.add('articleNav')
+// 	elem.innerHTML = marked(content);
+// 	return elem;
+// }
 
-async function appendNavArticles(menu) {
-	const pageCenter = document.getElementById('content-body')
-	while (pageCenter.lastElementChild) {
-		pageCenter.removeChild(pageCenter.lastElementChild);
-	}
-	articles
-		.filter(x => x.menu === menu)
-		.forEach(async x => {
-			const navArticleElem = await createNavAiticle(x.id)
-			pageCenter.appendChild(navArticleElem)
-		})
-}
+// async function appendNavArticles(menu) {
+// 	const pageCenter = document.getElementById('content-body')
+// 	while (pageCenter.lastElementChild) {
+// 		pageCenter.removeChild(pageCenter.lastElementChild);
+// 	}
+// 	articles
+// 		.filter(x => x.menu === menu)
+// 		.forEach(async x => {
+// 			const navArticleElem = await createNavAiticle(x.id)
+// 			pageCenter.appendChild(navArticleElem)
+// 		})
+// }
 
-async function appendArticle(id) {
-	const articleElem = await createAiticle(id)
-	const pageCenter = document.getElementById('content-body')
-	pageCenter.appendChild(articleElem)
-}
+// async function appendArticle(id) {
+// 	const articleElem = await createAiticle(id)
+// 	const pageCenter = document.getElementById('content-body')
+// 	pageCenter.appendChild(articleElem)
+// }
